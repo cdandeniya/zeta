@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>zeta — arithmetic game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <!-- Settings -->
+    <section id="settings" class="screen">
+      <h1>zeta</h1>
+      <p class="sub">quick arithmetic. type the answer; it advances on its own.</p>
+
+      <form id="settings-form" autocomplete="off">
+        <fieldset>
+          <legend>operations</legend>
+
+          <label class="op">
+            <input type="checkbox" name="add" checked>
+            <span>addition</span>
+          </label>
+          <div class="range">
+            (<input type="number" name="addA1" value="2">–<input type="number" name="addA2" value="100">)
+            +
+            (<input type="number" name="addB1" value="2">–<input type="number" name="addB2" value="100">)
+          </div>
+
+          <label class="op">
+            <input type="checkbox" name="sub" checked>
+            <span>subtraction</span>
+          </label>
+          <div class="range note">addition problems in reverse</div>
+
+          <label class="op">
+            <input type="checkbox" name="mul" checked>
+            <span>multiplication</span>
+          </label>
+          <div class="range">
+            (<input type="number" name="mulA1" value="2">–<input type="number" name="mulA2" value="12">)
+            ×
+            (<input type="number" name="mulB1" value="2">–<input type="number" name="mulB2" value="100">)
+          </div>
+
+          <label class="op">
+            <input type="checkbox" name="div" checked>
+            <span>division</span>
+          </label>
+          <div class="range note">multiplication problems in reverse</div>
+        </fieldset>
+
+        <fieldset>
+          <legend>duration</legend>
+          <div class="durations">
+            <label><input type="radio" name="duration" value="30"><span>30s</span></label>
+            <label><input type="radio" name="duration" value="60"><span>60s</span></label>
+            <label><input type="radio" name="duration" value="120" checked><span>120s</span></label>
+            <label><input type="radio" name="duration" value="custom"><span>custom</span></label>
+            <input type="number" name="customSeconds" min="1" max="3600" value="90" aria-label="custom seconds" disabled> <span class="unit">s</span>
+          </div>
+        </fieldset>
+
+        <p id="settings-error" class="error" role="alert"></p>
+        <p id="settings-best" class="best"></p>
+        <button type="submit" id="start-btn">start</button>
+      </form>
+    </section>
+
+    <!-- Game -->
+    <section id="game" class="screen" hidden>
+      <div class="bar">
+        <span>seconds left: <strong id="timer">0</strong></span>
+        <span>score: <strong id="score">0</strong></span>
+      </div>
+      <div class="problem-wrap">
+        <span id="problem" class="problem"></span>
+        <span class="eq">=</span>
+        <input id="answer" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" aria-label="answer">
+      </div>
+      <p class="hint">esc to quit</p>
+    </section>
+
+    <!-- End -->
+    <section id="end" class="screen" hidden>
+      <p class="label">score</p>
+      <p id="final-score" class="big">0</p>
+      <p id="rate" class="stat"></p>
+      <p id="highscore" class="stat"></p>
+      <div class="actions">
+        <button id="again-btn" type="button">play again <span class="key">enter</span></button>
+        <button id="back-btn" type="button" class="ghost">settings</button>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
